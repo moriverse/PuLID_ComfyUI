@@ -305,19 +305,18 @@ class PulidInsightFaceLoader:
 class PulidEvaClipLoader:
     @classmethod
     def INPUT_TYPES(s):
-        return {
-            "required": {},
-        }
+        return {"required": {"eva_clip_file": (folder_paths.get_filename_list("clip"),)},}
 
     RETURN_TYPES = ("EVA_CLIP",)
     FUNCTION = "load_eva_clip"
     CATEGORY = "pulid"
 
-    def load_eva_clip(self):
+    def load_eva_clip(self, eva_clip_file):
         from .eva_clip.factory import create_model_and_transforms
 
+        ckpt_path = folder_paths.get_full_path("pulid", eva_clip_file)
         model, _, _ = create_model_and_transforms(
-            "EVA02-CLIP-L-14-336", "eva_clip", force_custom_clip=True
+            "EVA02-CLIP-L-14-336", ckpt_path, force_custom_clip=True
         )
 
         model = model.visual
