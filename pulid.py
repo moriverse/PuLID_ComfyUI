@@ -314,7 +314,7 @@ class PulidEvaClipLoader:
     def load_eva_clip(self, eva_clip_file):
         from .eva_clip.factory import create_model_and_transforms
 
-        ckpt_path = folder_paths.get_full_path("pulid", eva_clip_file)
+        ckpt_path = folder_paths.get_full_path("clip", eva_clip_file)
         model, _, _ = create_model_and_transforms(
             "EVA02-CLIP-L-14-336", ckpt_path, force_custom_clip=True
         )
